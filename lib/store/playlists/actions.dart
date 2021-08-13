@@ -1,0 +1,3 @@
+class FetchPlaylistsAction {}
+
+class FetchSongsAction {}
