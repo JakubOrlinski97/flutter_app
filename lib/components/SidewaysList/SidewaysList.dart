@@ -18,8 +18,8 @@ class SidewaysList extends StatelessWidget {
 
     return Column(children: [
       Text(title, style: Theme.of(context).textTheme.headline5),
-      SizedBox(
-          height: IMAGE_SIZE + TEXT_HEIGHT * 2 + MARGIN_HEIGHT * 3,
+      AspectRatio(
+          aspectRatio: 2,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: children,

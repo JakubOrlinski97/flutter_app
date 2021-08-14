@@ -17,18 +17,32 @@ class SongItem extends StatefulWidget {
 class _SongItemState extends State<SongItem> {
   @override
   Widget build(BuildContext context) {
-
-    return Row(children: [
-      CachedNetworkImage(imageUrl: widget.playlist.coverUrl),
-      Column(children: [
-        Text(widget.song.name, style: Theme.of(context).textTheme.headline4),
-        Row(children: [
-          widget.song.isSaved ?? Icon(Icons.cloud_download, color: Colors.green),
-          Text(widget.song.author, style: Theme.of(context).textTheme.headline5)
-        ]),
-        widget.song.isLiked ?? Icon(EvaIcons.heart, color: Colors.green),
-        Icon(EvaIcons.moreVerticalOutline, color: Colors.grey),
-      ])
-    ],);
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+              height: 50,
+              width: 50,
+              child: CachedNetworkImage(imageUrl: widget.playlist.coverUrl)),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(widget.song.name,
+                style: Theme.of(context).textTheme.headline4),
+            Row(children: [
+              widget.song.isSaved
+                  ? Icon(Icons.cloud_download, color: Colors.green)
+                  : Text("not saved"),
+              Text(widget.song.author.name,
+                  style: Theme.of(context).textTheme.headline5)
+            ])
+          ]),
+          widget.song.isLiked
+              ? Icon(EvaIcons.heart, color: Colors.green)
+              : Text("not Liked"),
+          Icon(EvaIcons.moreVerticalOutline, color: Colors.grey),
+        ],
+      ),
+    );
   }
 }

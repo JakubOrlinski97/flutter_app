@@ -51,7 +51,7 @@ class _PlaylistItemState extends State<PlaylistItem> {
           ));
     } else {
       return Hero(
-          tag: 'hero-rectangle-${widget.playlist.id}',
+          tag: 'hero-rectangle-${widget.playlist.reference.id}',
           child: SizedBox(
               width: IMAGE_SIZE,
               height: IMAGE_SIZE,
@@ -83,8 +83,8 @@ class _PlaylistItemState extends State<PlaylistItem> {
       );
     } else {
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(widget.playlist.name, textAlign: TextAlign.left),
-        Text(widget.playlist.author, textAlign: TextAlign.left)
+        Text(widget.playlist.name, style: TextStyle(color: Colors.white)),
+        Text(widget.playlist.author.name, style: TextStyle(color: Colors.white))
       ]);
     }
   }

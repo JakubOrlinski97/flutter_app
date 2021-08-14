@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () async => {},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
