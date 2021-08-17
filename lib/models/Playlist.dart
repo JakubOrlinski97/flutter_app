@@ -6,7 +6,7 @@ import 'package:flutter_app/models/Song.dart';
 class Playlist {
   String name;
   String coverUrl;
-  Author author;
+  String author;
   bool saved;
   PlaylistType playlistType;
   DateTime releaseYear;
@@ -22,13 +22,6 @@ class Playlist {
 
   DocumentReference reference;
 
-  factory Playlist.fromSnapshot(DocumentSnapshot snapshot) {
-    print("Playlist.fromSnapshot, ${snapshot.data()}");
-    Playlist newPlaylist = Playlist.fromJson(snapshot.data());
-    newPlaylist.reference = snapshot.reference;
-    return newPlaylist;
-  }
-
   factory Playlist.fromJson(Map<String, dynamic> json) {
     return _playlistFromJson(json);
   }
@@ -37,15 +30,21 @@ class Playlist {
 }
 
 Playlist _playlistFromJson(Map<dynamic, dynamic> json) {
-  Author author = Author.fromJson({'name': 'Jake'});
+  List<Song> songs = [];
+
+  if (json['songs'] != null) {
+    songs = List.from(json['songs'])
+        .map<Song>((song) => Song.fromJson(song))
+        .toList();
+  }
 
   return Playlist(
     name: json['name'] as String,
     coverUrl: json['coverUrl'] as String,
-    author: author,
+    author: json['author'] as String,
     playlistType: PlaylistType.album,
     releaseYear: (json['releaseYear'] as Timestamp).toDate(),
-    songs: json['songs'] as List<Song>,
+    songs: songs,
   );
 }
 

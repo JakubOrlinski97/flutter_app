@@ -43,6 +43,10 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               title: 'Spotify',
               theme: ThemeData(
+                pageTransitionsTheme: PageTransitionsTheme(builders: {
+                  TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+                  TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                }),
                 textTheme: Typography.whiteMountainView,
                 colorScheme: ColorScheme.dark(primary: Color(0x111111)),
                 primarySwatch: Colors.red,

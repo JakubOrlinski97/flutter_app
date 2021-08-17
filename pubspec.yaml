@@ -35,6 +35,8 @@ dependencies:
   firebase_core: ^1.4.0
   redux_thunk: ^0.4.0
   provider: ^5.0.0
+  audioplayer: ^0.8.1
+  firebase_storage: ^10.0.1
 
 dev_dependencies:
   flutter_test:

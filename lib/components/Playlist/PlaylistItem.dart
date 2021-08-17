@@ -84,7 +84,7 @@ class _PlaylistItemState extends State<PlaylistItem> {
     } else {
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(widget.playlist.name, style: TextStyle(color: Colors.white)),
-        Text(widget.playlist.author.name, style: TextStyle(color: Colors.white))
+        Text(widget.playlist.author, style: TextStyle(color: Colors.white))
       ]);
     }
   }

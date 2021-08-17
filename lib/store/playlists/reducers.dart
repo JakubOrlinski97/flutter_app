@@ -11,6 +11,5 @@ final playlistsReducer = combineReducers<List<Playlist>>([
 
 List<Playlist> _fetchedPlaylists(
     List<Playlist> state, FetchedPlaylistsAction action) {
-  print("FetchedPlaylistsAction " + action.playlists.toString());
   return action.playlists;
 }

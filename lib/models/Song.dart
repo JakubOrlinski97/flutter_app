@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/models/Author.dart';
+import 'package:flutter_app/models/Playlist.dart';
 
 class Song {
   int id;
   String name;
-  Author author;
+  String author;
   int duration;
   bool isSaved;
   bool isLiked;
+  Timestamp addedAt;
+  String storagePath;
+  DocumentReference songRef;
 
   Song(
       {this.id,
@@ -15,32 +19,34 @@ class Song {
       this.author,
       this.duration,
       this.isSaved,
-      this.isLiked});
+      this.isLiked,
+      this.addedAt,
+      this.songRef,
+      this.storagePath});
 
   DocumentReference reference;
 
-  factory Song.fromSnapshot(QueryDocumentSnapshot snapshot) {
-    print("song.fromSnapshot ${snapshot.data()}");
-    return Song();
-    // Song newSong = Song.fromJson();
-    // newSong.reference = snapshot.;
-    // return newSong;
-  }
-
   factory Song.fromJson(Map<String, dynamic> json) {
-    return _songFromJson(json);
+    return Song(
+        name: json['name'] ?? "",
+        author: json['author'],
+        duration: json['duration'] ?? 0,
+        isLiked: true,
+        isSaved: true,
+        addedAt: json['added_at'],
+        storagePath: json['storage_path'],
+        songRef: json['song']);
   }
 
   Map<String, dynamic> toJson() => _songToJson(this);
 }
 
 Song _songFromJson(Map<dynamic, dynamic> json) {
-  Author author = Author.fromJson({'name': 'Jake'});
-
   return Song(
       name: json['name'] as String,
       duration: json['duration'] as int,
-      author: author,
+      author: json['author'] as String,
+      storagePath: json['storage_path'] as String,
       isSaved: true,
       isLiked: true);
 }
